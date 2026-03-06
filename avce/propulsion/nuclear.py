@@ -99,17 +99,19 @@ class NuclearReactor:
             return ReactorState(ReactorStatus.SHUTDOWN, 0.0, 0.0, 0.0, self._scram_count)
 
         p = self._p
-        # 클램핑
-        demand_frac = max(p.P_min_frac, min(p.P_max_frac, demand_frac))
-        P_target = p.P_rated_mw * demand_frac
-        self._demand = demand_frac
 
-        # SCRAM 체크
-        if P_target > p.P_rated_mw * p.P_scram_frac:
+        # SCRAM 체크 — 클램핑 이전에 원시 요구치로 평가
+        # (P_max_frac < P_scram_frac 이므로 클램핑 이후엔 SCRAM 도달 불가)
+        if demand_frac > p.P_scram_frac or self._P_mw > p.P_rated_mw * p.P_scram_frac:
             self._P_mw = 0.0
             self._status = ReactorStatus.SCRAMMED
             self._scram_count += 1
             return ReactorState(ReactorStatus.SCRAMMED, 0.0, demand_frac, 0.0, self._scram_count)
+
+        # 클램핑
+        demand_frac = max(p.P_min_frac, min(p.P_max_frac, demand_frac))
+        P_target = p.P_rated_mw * demand_frac
+        self._demand = demand_frac
 
         # 1차 지연 응답: dP/dt = (P_target - P) / tau
         self._P_mw += (P_target - self._P_mw) / p.tau_response_s * dt_s

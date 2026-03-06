@@ -37,11 +37,13 @@ class IceInterfaceConfig:
 @dataclass(frozen=True)
 class IceContactResult:
     """빙 접촉 분석 결과 (불변)."""
-    in_contact:       bool    # 접촉 여부
-    nearest_layer:    Optional[IceLayer]  # 가장 가까운 빙층
-    clearance_m:      float   # 빙까지 이격 거리 [m]
-    tau_ram:          _Tau6   # 파쇄 외란 벡터
-    risk_level:       float   # 위험 수준 [0~1]
+    in_contact:         bool              # 접촉 여부
+    nearest_layer:      Optional[IceLayer]  # 가장 가까운 빙층
+    clearance_m:        float             # 빙까지 이격 거리 [m]
+    tau_ram:            _Tau6             # 파쇄 외란 벡터
+    risk_level:         float             # 위험 수준 [0~1]
+    surface_ice_count:  int = 0           # 감지된 수면 빙층 수 (ICEBREAKER 모드)
+    ceiling_ice_count:  int = 0           # 감지된 빙 천장 수 (UNDER_ICE 모드)
 
 class IceInterface:
     """3D 빙 인터페이스 분석·파쇄력 계산.
@@ -68,7 +70,16 @@ class IceInterface:
         relevant = self._relevant_layers(state, mode)
 
         if not relevant:
-            return IceContactResult(False, None, 9999.0, (0,0,0,0,0,0), 0.0)
+            return IceContactResult(False, None, 9999.0, (0,0,0,0,0,0), 0.0, 0, 0)
+
+        # 수면/천장 빙층 카운트 (반경 내 전체, 모드 불문)
+        in_radius = [
+            layer for layer in self._layers
+            if math.sqrt((state.xi_m - layer.xi_m)**2 + (state.eta_m - layer.eta_m)**2)
+               <= cfg.detect_radius_m
+        ]
+        surf_count    = sum(1 for l in in_radius if l.is_surface_ice)
+        ceiling_count = sum(1 for l in in_radius if l.is_ceiling_ice)
 
         # 가장 가까운 빙층 + 이격 계산
         nearest, clearance = self._nearest_clearance(state, relevant, mode)
@@ -88,6 +99,8 @@ class IceInterface:
             clearance_m=clearance,
             tau_ram=tau_ram,
             risk_level=risk,
+            surface_ice_count=surf_count,
+            ceiling_ice_count=ceiling_count,
         )
 
     def ceiling_avoidance_tau(
