@@ -1,0 +1,102 @@
+{
+  "module": "AVCE",
+  "description": "Autonomous Vessel Control Engine — 자율선박·쇄빙선 제어",
+  "signed_at": "2026-03-06T12:17:07.543784Z",
+  "entries": [
+    {
+      "file": "avce/__init__.py",
+      "sha256": "b2dc0166d2a5e10a672bcf3bc7efc3d39811d88f4c9f6a5895a9c10e09d74e53",
+      "bytes": 5809
+    },
+    {
+      "file": "avce/controller.py",
+      "sha256": "8d7866e3c58a1120489a4428bccbc5e47ed17168e82c3496e20751dffec1633f",
+      "bytes": 5058
+    },
+    {
+      "file": "avce/core/__init__.py",
+      "sha256": "fefc20b37965695a4d3a5a26c75ca32701ea5971b3e93f5a1c0e34e5696b6bd6",
+      "bytes": 1386
+    },
+    {
+      "file": "avce/core/state.py",
+      "sha256": "7ae14907766b9898eb02a27db9890082406fcd51cbd81721c8844429b0312979",
+      "bytes": 1549
+    },
+    {
+      "file": "avce/core/constants.py",
+      "sha256": "75c10bbad30ba41b86bc725809bba38d59d48682eb7a196723b9b03617f5cead",
+      "bytes": 658
+    },
+    {
+      "file": "avce/core/ramming.py",
+      "sha256": "8a4ba7a48b89e4e310c0be8a109033a8b4db83baf98693c27f06828c715574ac",
+      "bytes": 1592
+    },
+    {
+      "file": "avce/core/estimator.py",
+      "sha256": "aa7222855ad0a8f7f330fac97d5cb28f674a2510323af49fe9b27159773f1421",
+      "bytes": 13843
+    },
+    {
+      "file": "avce/control/__init__.py",
+      "sha256": "de2aa4e7c287ceca34086b223ba3e780d77a0f05a091e4613e7e8636db7475ae",
+      "bytes": 902
+    },
+    {
+      "file": "avce/control/potential_field.py",
+      "sha256": "1942695d6d22fe565f028bfb527b7c31a3e4052462bb4fa42e7d247ab2298a0c",
+      "bytes": 13000
+    },
+    {
+      "file": "avce/control/path_controller.py",
+      "sha256": "7d6f9ea34a2e31b614b676f4defbe8dd9683d7d90404d19c65de67bfb43c34b1",
+      "bytes": 2079
+    },
+    {
+      "file": "avce/control/cerebellum_profile.py",
+      "sha256": "2160c46d5e1d3d74c314c7b78a6599af3fa5d2432c68b2a6e8a1845939700c33",
+      "bytes": 3250
+    },
+    {
+      "file": "avce/memory/__init__.py",
+      "sha256": "1ec0e7ad2c4411605ea2ee877ccde38b5e7d7c51c78f6caa460d48719f0d9b3f",
+      "bytes": 143
+    },
+    {
+      "file": "avce/memory/well_memory.py",
+      "sha256": "a12c0fae1f6e426089540c9dba385f6b6a7ce9aeae4bd46d1109d56ebe9bba88",
+      "bytes": 2308
+    },
+    {
+      "file": "avce/simulation/__init__.py",
+      "sha256": "f9ef02de9946d55537c49090f4f80fc0ca263c6d83e0dbc02595a93af676b548",
+      "bytes": 563
+    },
+    {
+      "file": "avce/simulation/dynamics.py",
+      "sha256": "69f5cfa7c680e7c784970cd0aa2ecf071714e3dbf64efd506be9fd482f115a04",
+      "bytes": 8650
+    },
+    {
+      "file": "avce/simulation/loop.py",
+      "sha256": "90fd713eb709cf773f23a6470fa376274afc0a425d141b4f0e7fbe4aed1f6a2c",
+      "bytes": 9306
+    },
+    {
+      "file": "avce/integration/__init__.py",
+      "sha256": "43a660a3f07941168d895be858aad8a271e37b9b4348015d1f28c7574c922365",
+      "bytes": 367
+    },
+    {
+      "file": "avce/integration/orbit_stabilizer_adapter.py",
+      "sha256": "a4a9600b17ec36fe95cdb1d374c29c4055ca1e20d37270423ea7842f65d44e4c",
+      "bytes": 3807
+    },
+    {
+      "file": "avce/integration/grid5d_adapter.py",
+      "sha256": "bcec3581480684c2e78a2fae4627883818dda251316bc462ffb2bc7162c3e103",
+      "bytes": 2760
+    }
+  ]
+}

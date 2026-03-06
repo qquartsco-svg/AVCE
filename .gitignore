@@ -1,0 +1,17 @@
+# Bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+# Env
+.env
+.venv
+venv/
+# IDE
+.idea/
+.vscode/
+*.swp
+# OS
+.DS_Store
+Thumbs.db
+# PHAM chain (optional; include if you want tracked)
+# pham_chain_*.json
